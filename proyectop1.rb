@@ -5,7 +5,7 @@ require 'terminal-table'
 autores ={
 tope: nil,
 final: nil,
-esta_vacía: true,
+esta_vacia: true,
 esta_llena: false,
 max: 5,
 size: 0,
