@@ -11,19 +11,42 @@ max: 5,
 size: 0,
 }
 
-autor= {
- tope: nil,
- esta_vacia: true,
- size: 0,
-}
+def registroa(autores)
+   if autores[:size]>4
+     puts"ya no puede agregar mas autores"
+  else
+     puts 'Registre un autor'
+     autorn = gets.chomp.upcase
+     autores[:size]+=1
 
-libro={
-  codigo: isbn,
-  nombre: n,
-  precio: p,
-  siguiente: nil,
-  size: 0
-}
+     if autores[:esta_vacia]
+       autor= {
+         autor: autorn,
+         tope: nil,
+         esta_vacia: true,
+         size: 0,
+         siguiente: nil
+         }
+     
+         autores[:tope] = autor
+         autores[:esta_vacia] = false
+         autores[:final] = autor
+
+     else
+        autor= {
+        autor: autorn,
+        tope: nil,
+        esta_vacia: true,
+        size: 0,
+        siguiente: nil
+        }
+       autor_final=autores[:final]
+       autor_final[:siguiente]=autor
+       autores[:final]=autor
+    end 
+  end
+  
+end
 
 def mostrar(autores)
     aux = autores[:tope]
@@ -80,7 +103,7 @@ if opcion==1
     if opcion1=='a'
         registrol()
     elsif opcion1=='b'
-        registroa()
+        registroa(autores)
     elsif opcion1=='c'
         listadol()
     elsif opcion1=='d'
@@ -113,4 +136,4 @@ elsif opcion==2
 else 
     puts "Ingreso un valor inválido"
 end
-    end while opcion=!3
+end while opcion!=3
