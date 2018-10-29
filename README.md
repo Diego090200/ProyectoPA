@@ -9,11 +9,6 @@ autores ={
     size: 0,
 }
 
-autor= {
-    tope: nil,
-    esta_vacia: true,
-    size: 0,
-}
 
 libro={
     
@@ -46,6 +41,19 @@ def registrar(lista, valor)
             autor: autor
         }
 
+        if autor[:tope] == nil
+            
+            autor = libro
+            autor[:esta_vacia] = false
+            autor[:size] =+ 1
+        else
+            libro[:siguiente] = libro
+            autor = libro
+            autor[:size] =+ 1
+        end
+
+
+
     elsif valor == 'b' or valor == 'B'
 
         puts "Ingrese el nombre del autor"
@@ -56,8 +64,8 @@ def registrar(lista, valor)
         autor = {
             tope: nil
             esta_vacia: true,
-            size: 0
         }
+
 
     else
         puts 'Ingrese nuevamente su opcion'
@@ -71,7 +79,7 @@ end
 begin
         
     puts "BOOKSTORE"
-    puts "Seleccione una opción: "
+     puts "Seleccione una opción: "
     puts "1. Administración de libros"
     puts "2. Control de ventas:"
      puts "3. salir"
