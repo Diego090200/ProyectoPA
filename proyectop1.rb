@@ -1,9 +1,36 @@
-#proyecto prueba 1   puts "BOOKSTORE"
+#proyecto prueba 1   
+autores ={
+tope: nil,
+final: nil,
+esta_vacía: true,
+esta_llena: false,
+max: 5,
+size: 0,
+}
+
+autor= {
+ tope: nil,
+ esta_vacia: true,
+ size: 0,
+}
+
+libro={
+  codigo: isbn,
+  nombre: n,
+  precio: p,
+  siguiente: nil,
+  size: 0
+}
+
+
+begin
+    
+puts "BOOKSTORE"
 
 puts "Seleccione una opción: "
 puts "1. Administración de libros"
 puts "2. Control de ventas:"
-
+puts "3. salir"
 opcion=gets.chomp.to_i
 
 if opcion==1
@@ -52,3 +79,4 @@ elsif opcion==2
 else 
     puts "Ingreso un valor inválido"
 end
+    end while opcion=!3
