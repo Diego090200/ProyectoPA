@@ -71,7 +71,7 @@ end
 begin
         
     puts "BOOKSTORE"
-     puts "Seleccione una opción: "
+    puts "Seleccione una opción: "
     puts "1. Administración de libros"
     puts "2. Control de ventas:"
      puts "3. salir"
