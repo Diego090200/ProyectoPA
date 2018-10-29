@@ -1,4 +1,7 @@
-#proyecto prueba 1   
+#proyecto prueba 1 
+require 'byebug'
+require 'terminal-table'
+
 autores ={
 tope: nil,
 final: nil,
@@ -22,6 +25,37 @@ libro={
   size: 0
 }
 
+def mostrar(autores)
+    aux = autores[:tope]
+    if vacia?(autores)
+      puts 'La pila esta vacía'
+    else
+      tabla = Terminal::Table.new do |t|
+        t.headings = ['Autores', 'C. Libros']
+  
+        aux = autores[:tope]
+        loop do
+          siguiente = aux[:siguiente]
+          libro = aux[:valor]
+          t.add_row([
+            "#{autor[:libro]} - #{autor[:nombre]}",
+            obtener_posicion(autores, autor[:libro]),
+            siguiente == nil ? 'NIL' : siguiente[:valor][:carnet]
+          ])
+          if aux[:siguiente] == nil
+            break
+          end
+          aux = aux[:siguiente]
+        end
+        t.add_row(:separator)
+        t.add_row([
+          { value: 'Total', colspan: 2, alignment: :right },
+          autores[:size]
+        ])
+      end
+      puts tabla
+    end
+  end
 
 begin
     
