@@ -11,42 +11,7 @@ max: 5,
 size: 0,
 }
 
-def registroa(autores)
-   if autores[:size]>4
-     puts"ya no puede agregar mas autores"
-  else
-     puts 'Registre un autor'
-     autorn = gets.chomp.upcase
-     autores[:size]+=1
 
-     if autores[:esta_vacia]
-       autor= {
-         autor: autorn,
-         tope: nil,
-         esta_vacia: true,
-         size: 0,
-         siguiente: nil
-         }
-     
-         autores[:tope] = autor
-         autores[:esta_vacia] = false
-         autores[:final] = autor
-
-     else
-        autor= {
-        autor: autorn,
-        tope: nil,
-        esta_vacia: true,
-        size: 0,
-        siguiente: nil
-        }
-       autor_final=autores[:final]
-       autor_final[:siguiente]=autor
-       autores[:final]=autor
-    end 
-  end
-  
-end
 
 def mostrar(autores)
     aux = autores[:tope]
@@ -79,6 +44,83 @@ def mostrar(autores)
       puts tabla
     end
   end
+
+def registroa(autores)
+ puts "Ingrese un autor"
+ autorn = gets.chomp.upcase
+
+ if autores[:esta_vacia]
+    autor= {
+       autor: autorn,
+       tope: nil,
+       esta_vacia: true,
+       size: 0,
+       siguiente: nil
+       }
+     
+     autores[:tope] = autor
+     autores[:esta_vacia] = false
+     autores[:final] = autor
+     autores[:size]+=1
+ else
+  if autores[:size]==1
+     if autores[:tope][:autor]==autorn
+      puts "el autor ya está registrado"
+     else 
+      autor= {
+        autor: autorn,
+        tope: nil,
+        esta_vacia: true,
+        size: 0,
+        siguiente: nil
+        }
+      autor_final=autores[:final]
+      autor_final[:siguiente]=autor
+      autores[:final]=autor
+      autores[:size]+=1
+
+     end
+  else
+   if autores[:size]<5
+
+    for i in 1..autores[:size]-1 do
+
+     puts autores[:siguiente][:autor]
+    
+     if autores[:siguiente][:autor]==autorn
+      puts "El autor ya esta registrado"
+
+     else 
+      autor= {
+        autor: autorn,
+        tope: nil,
+        esta_vacia: true,
+        size: 0,
+        siguiente: nil
+        }
+       autor_final=autores[:final]
+       autor_final[:siguiente]=autor
+       autores[:final]=autor
+       autores[:size]+=1
+    
+
+     end
+
+     autores=autores[:siguiente]
+
+    end
+   else
+
+    puts "No puede Ingresar mas autores"
+   end
+
+  end
+ end
+ 
+end
+
+
+
 
 begin
     
