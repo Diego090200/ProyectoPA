@@ -2,6 +2,10 @@
 require 'byebug'
 require 'terminal-table'
 
+def limpiar
+    system('clear') 
+end
+
 autores ={
 tope: nil,
 final: nil,
@@ -13,7 +17,7 @@ size: 0,
 
 
 
-def mostrar(autores)
+def listadoa(autores)
     aux = autores[:tope]
     if vacia?(autores)
       puts 'La pila esta vacía'
@@ -43,79 +47,79 @@ def mostrar(autores)
       end
       puts tabla
     end
-  end
+end
 
 def registroa(autores)
- puts "Ingrese un autor"
+ limpiar
+    puts "Ingrese un autor"
  autorn = gets.chomp.upcase
-
- if autores[:esta_vacia]
-    autor= {
-       autor: autorn,
-       tope: nil,
-       esta_vacia: true,
-       size: 0,
-       siguiente: nil
-       }
+ 
+   if autores[:esta_vacia]
+        autor= {
+        autor: autorn,
+        tope: nil,
+        esta_vacia: true,
+        size: 0,
+        siguiente: nil
+        }
      
-     autores[:tope] = autor
-     autores[:esta_vacia] = false
-     autores[:final] = autor
-     autores[:size]+=1
+        autores[:tope] = autor
+        autores[:esta_vacia] = false
+        autores[:final] = autor
+        autores[:size]+=1
  else
-  if autores[:size]==1
-     if autores[:tope][:autor]==autorn
-      puts "el autor ya está registrado"
-     else 
-      autor= {
-        autor: autorn,
-        tope: nil,
-        esta_vacia: true,
-        size: 0,
-        siguiente: nil
-        }
-      autor_final=autores[:final]
-      autor_final[:siguiente]=autor
-      autores[:final]=autor
-      autores[:size]+=1
+        if autores[:size]==1
+            if autores[:tope][:autor]==autorn
+                puts "el autor ya está registrado"
+            else 
+                autor= {
+                autor: autorn,
+                tope: nil,
+                esta_vacia: true,
+                size: 0,
+                siguiente: nil
+                }
+                autor_final=autores[:final]
+                autor_final[:siguiente]=autor
+                autores[:final]=autor
+                autores[:size]+=1
 
-     end
-  else
-   if autores[:size]<5
+            end
+        else
+            if autores[:size]<5
 
-    for i in 1..autores[:size]-1 do
+                for i in 1..autores[:size]+1 do
 
-     puts autores[:siguiente][:autor]
+                    puts autores[:siguiente][:autor]
     
-     if autores[:siguiente][:autor]==autorn
-      puts "El autor ya esta registrado"
+                    if autores[:siguiente][:autor]==autorn
+                    puts "El autor ya esta registrado"
 
-     else 
-      autor= {
-        autor: autorn,
-        tope: nil,
-        esta_vacia: true,
-        size: 0,
-        siguiente: nil
-        }
-       autor_final=autores[:final]
-       autor_final[:siguiente]=autor
-       autores[:final]=autor
-       autores[:size]+=1
+                    else 
+                        autor= {
+                        autor: autorn,
+                        tope: nil,
+                        esta_vacia: true,
+                        size: 0,
+                        siguiente: nil
+                        }
+                        autor_final=autores[:final]
+                        autor_final[:siguiente]=autor
+                        autores[:final]=autor
+                        autores[:size]+=1
     
 
-     end
+                    end
 
-     autores=autores[:siguiente]
+                    autores=autores[:siguiente]
+                end
+            else
 
+                puts "No puede Ingresar mas autores"
+            end
+
+        end
     end
-   else
-
-    puts "No puede Ingresar mas autores"
-   end
-
-  end
- end
  
 end
 
@@ -133,6 +137,7 @@ puts "3. salir"
 opcion=gets.chomp.to_i
 
 if opcion==1
+    limpiar
     puts "Seleccione la acción que desea"
     puts "a. Registro de nuevos libros" 
     puts "b. Registro de autores"
@@ -159,11 +164,12 @@ if opcion==1
     end
 
 elsif opcion==2
+    limpiar
     puts "Seleccione la acción que desea"
     puts "a. Registrar una venta" 
     puts "b. Buscar una venta"
     puts "c. Listado de ventas"
-
+    
     opcion2= gets.chomp.downcase
 
     if opcion2=='a'
